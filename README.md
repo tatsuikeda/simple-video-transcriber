@@ -5,7 +5,7 @@ Simple Video Transcriber is a Python-based tool that uses OpenAI's Whisper model
 ## Features
 
 - Transcribe audio from various video and audio file formats
-- Automatic dependency installation
+- Dependency check with install instructions (pinned in requirements.txt)
 - Progress tracking during transcription
 - Output saved to a text file
 
@@ -31,17 +31,74 @@ Note: The actual range of supported formats may depend on your FFmpeg installati
    pip install -r requirements.txt
    ```
 
-   Note: The script will attempt to install missing dependencies automatically when run.
+   Note: The script checks dependencies at startup and exits with instructions if any are missing. It never installs packages itself.
 
 ## Usage
 
-Run the script from the command line, providing the path to your audio or video file:
+### Basic Usage
 
-```
+Transcribe a single file:
+```bash
 python simple_video_transcriber.py /path/to/your/file.mp4
 ```
 
-The transcription will be saved in a text file in the same directory as the input file, with "_transcription.txt" appended to the original filename.
+### Multiple Files
+
+Transcribe multiple files at once:
+```bash
+python simple_video_transcriber.py video1.mp4 video2.mp4 audio.mp3
+```
+
+### Process Entire Folders
+
+Process all media files in a folder (searches recursively):
+```bash
+python simple_video_transcriber.py /path/to/videos/
+```
+
+### Custom Output Directory
+
+Save all transcriptions to a specific folder:
+```bash
+python simple_video_transcriber.py file.mp4 -o ./transcriptions
+```
+
+### Choose Model Size
+
+Select different Whisper model sizes for accuracy vs. speed tradeoff:
+```bash
+python simple_video_transcriber.py file.mp4 -m medium
+```
+
+Available models: `tiny`, `base`, `small`, `medium`, `large`
+- **tiny**: Fastest, least accurate
+- **base**: Good balance (default)
+- **small**: Better accuracy, slower
+- **medium**: High accuracy, much slower
+- **large**: Best accuracy, slowest
+
+### Subtitles (SRT and VTT)
+
+Save timestamped subtitles alongside, or instead of, plain text:
+```bash
+python simple_video_transcriber.py file.mp4 -f txt srt vtt
+```
+
+Choices: `txt` (default), `srt`, `vtt`. Each file is saved as `<name>_transcription.<format>`.
+
+### Combined Options
+
+```bash
+python simple_video_transcriber.py /path/to/videos/ -o ./transcriptions -m medium
+```
+
+### Get Help
+
+```bash
+python simple_video_transcriber.py --help
+```
+
+By default, transcription files are saved in the same directory as the input file with "_transcription.txt" appended to the filename.
 
 ## Requirements
 
