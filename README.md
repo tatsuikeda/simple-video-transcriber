@@ -125,3 +125,7 @@ Contributions, issues, and feature requests are welcome. Feel free to check [iss
 ## Disclaimer
 
 This tool uses the Whisper model, which may have its own terms of use. Please ensure you comply with OpenAI's use-case policies when using this tool.
+
+## About the author
+
+Built by Tatsu Ikeda of [Tech Health Ventures](https://techhealthventures.com), an AI, IT and engineering consultancy in Boston. More free tools are listed at [techhealthventures.com/open-source](https://techhealthventures.com/open-source).
